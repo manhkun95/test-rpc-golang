@@ -3,6 +3,7 @@ syntax = "proto3";
 package proto;
 
 service Product {
+  rpc CreateProduct (CreateProductRequest) returns (CreateProductResponse) {}
   rpc GetProducts (GetProductsRequest) returns (GetProductsResponse) {}
 }
 
@@ -11,18 +12,28 @@ message GetProductsRequest {
 }
 
 message GetProductsResponse {
-  message Products {
-    int32 id = 1;
-    string name = 2;
-    string description = 3;
-    string detail = 4;
-    repeated string imgs = 5;
-    string properties = 6;
-    int32 price = 7;
-    int32 totalNumber = 8;
-  }
   int32 result = 1;
   repeated Products products = 2;
   int32 count = 3;
   int32 page = 4;
+}
+
+message Products {
+  int32 id = 1;
+  string name = 2;
+  string description = 3;
+  string detail = 4;
+  string imgs = 5;
+  string properties = 6;
+  int32 price = 7;
+  int32 totalNumber = 8;
+}
+
+message CreateProductRequest {
+  string name = 1;
+  string description = 2;
+}
+
+message CreateProductResponse {
+  int32 result = 1;
 }
